@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Aluno — ENEM INTELIGENTE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --primary-50: #eff6ff;
+            --success: #16a34a;
+            --success-light: #dcfce7;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --purple: #7c3aed;
+            --purple-light: #ede9fe;
+            --rose: #e11d48;
+            --rose-light: #ffe4e6;
+            --gray-50: #f8fafb;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.08);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-full: 9999px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+            letter-spacing: -0.3px;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .badge-student {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .badge-student::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* ===== HERO / WELCOME ===== */
+        .hero {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #3b82f6 100%);
+            color: var(--white);
+            padding: 48px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 640px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-emoji {
+            font-size: 48px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 480px;
+            margin: 0 auto 24px;
+            line-height: 1.7;
+        }
+
+        .plan-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .plan-indicator .plan-name {
+            color: #fde68a;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== SECTION ===== */
+        .section {
+            padding: 56px 0;
+        }
+
+        .section-gray {
+            background: var(--gray-50);
+        }
+
+        .section-white {
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            margin-bottom: 14px;
+        }
+
+        .tag-blue { background: var(--primary-light); color: var(--primary); }
+        .tag-green { background: var(--success-light); color: var(--success); }
+        .tag-purple { background: var(--purple-light); color: var(--purple); }
+        .tag-rose { background: var(--rose-light); color: var(--rose); }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .section-desc {
+            font-size: 15px;
+            color: var(--gray-500);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* ===== MODULE CARDS GRID ===== */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        /* ===== MODULE CARD ===== */
+        .module-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-100);
+            border-left: 4px solid var(--primary);
+            transition: box-shadow 0.25s ease, transform 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .module-card:hover {
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-2px);
+        }
+
+        .module-card.accent-green { border-left-color: var(--success); }
+        .module-card.accent-purple { border-left-color: var(--purple); }
+        .module-card.accent-rose { border-left-color: var(--rose); }
+        .module-card.accent-warning { border-left-color: var(--warning); }
+
+        .module-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .module-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .module-icon.icon-blue { background: var(--primary-light); }
+        .module-icon.icon-green { background: var(--success-light); }
+        .module-icon.icon-purple { background: var(--purple-light); }
+        .module-icon.icon-rose { background: var(--rose-light); }
+        .module-icon.icon-warning { background: var(--warning-light); }
+
+        .module-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gray-900);
+            line-height: 1.3;
+            padding-top: 4px;
+        }
+
+        .module-desc {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.65;
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        .module-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .module-plan-tag {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            background: var(--gray-100);
+            color: var(--gray-500);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background: #15803d;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
+        }
+
+        .btn-purple {
+            background: var(--purple);
+            color: var(--white);
+        }
+
+        .btn-purple:hover {
+            background: #6d28d9;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+        }
+
+        .btn-rose {
+            background: var(--rose);
+            color: var(--white);
+        }
+
+        .btn-rose:hover {
+            background: #be123c;
+            box-shadow: 0 4px 12px rgba(225, 29, 72, 0.35);
+        }
+
+        .btn-outline {
+            background: var(--white);
+            color: var(--gray-700);
+            border: 1.5px solid var(--gray-200);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-50);
+        }
+
+        .btn-lg {
+            padding: 14px 32px;
+            font-size: 16px;
+            border-radius: var(--radius-sm);
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        /* ===== UPSELL SECTION ===== */
+        .upsell-section {
+            background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+            padding: 64px 24px;
+        }
+
+        .upsell-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--gray-900);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .upsell-subtitle {
+            font-size: 15px;
+            color: var(--gray-500);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .upsell-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .upsell-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--gray-100);
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upsell-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .upsell-card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(180deg, var(--primary-50) 0%, var(--white) 30%);
+        }
+
+        .upsell-card.featured::before {
+            content: 'MAIS POPULAR';
+            position: absolute;
+            top: 16px;
+            right: -32px;
+            background: var(--primary);
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 40px;
+            transform: rotate(45deg);
+            letter-spacing: 0.8px;
+        }
+
+        .upsell-plan-icon {
+            font-size: 36px;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .upsell-plan-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+
+        .upsell-plan-price {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .upsell-plan-price small {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-400);
+        }
+
+        .upsell-plan-billing {
+            font-size: 12px;
+            color: var(--gray-400);
+            margin-bottom: 18px;
+        }
+
+        .upsell-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 24px;
+            flex: 1;
+        }
+
+        .upsell-features li {
+            font-size: 13px;
+            color: var(--gray-600);
+            padding: 5px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.4;
+        }
+
+        .upsell-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            font-size: 13px;
+            min-width: 16px;
+        }
+
+        .upsell-card .btn {
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* ===== SUPPORT BAR ===== */
+        .support-bar {
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .support-bar h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .support-bar p {
+            font-size: 14px;
+            color: var(--gray-400);
+            margin-bottom: 20px;
+            max-width: 440px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .support-contacts {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .support-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            background: rgba(255,255,255,0.08);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--white);
+            transition: background 0.2s ease;
+        }
+
+        .support-contact:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--gray-900);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 24px;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== QUICK ACCESS STRIP ===== */
+        .quick-access {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-100);
+            padding: 16px 24px;
+        }
+
+        .quick-access-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 2px;
+        }
+
+        .quick-access-inner::-webkit-scrollbar {
+            display: none;
+        }
+
+        .quick-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            background: var(--gray-100);
+            color: var(--gray-600);
+            border: 1px solid transparent;
+        }
+
+        .quick-chip:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .quick-chip .chip-icon {
+            font-size: 15px;
+        }
+
+        /* ===== STATS ROW ===== */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-100);
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .upsell-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                padding: 14px 16px;
+            }
+            .logo-text {
+                font-size: 15px;
+            }
+            .badge-student {
+                font-size: 11px;
+                padding: 5px 10px;
+            }
+            .hero {
+                padding: 36px 20px;
+            }
+            .hero-emoji {
+                font-size: 40px;
+            }
+            .hero h1 {
+                font-size: 22px;
+            }
+            .hero p {
+                font-size: 15px;
+            }
+            .modules-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .module-card {
+                padding: 22px;
+            }
+            .section {
+                padding: 40px 0;
+            }
+            .section-title {
+                font-size: 20px;
+            }
+            .upsell-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .stat-card {
+                padding: 16px 12px;
+            }
+            .stat-value {
+                font-size: 24px;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .support-contacts {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .module-card-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .module-card-footer {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            .module-plan-tag {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo-area">
+                <div class="logo-icon">EI</div>
+                <div class="logo-text">ENEM <span>INTELIGENTE</span></div>
+            </div>
+            <div class="badge badge-student">Área do Aluno</div>
+        </div>
+    </header>
+
+    <!-- QUICK ACCESS STRIP -->
+    <nav class="quick-access" aria-label="Acesso rápido">
+        <div class="quick-access-inner">
+            <a href="#nucleo" class="quick-chip"><span class="chip-icon">🎯</span> Núcleo</a>
+            <a href="#simulado" class="quick-chip"><span class="chip-icon">📝</span> Simulado</a>
+            <a href="#redacao" class="quick-chip"><span class="chip-icon">✍️</span> Redação</a>
+            <a href="#beneficios" class="quick-chip"><span class="chip-icon">⭐</span> Completo</a>
+            <a href="#planos" class="quick-chip"><span class="chip-icon">🚀</span> Upgrade</a>
+            <a href="#suporte" class="quick-chip"><span class="chip-icon">💬</span> Suporte</a>
+        </div>
+    </nav>
+
+    <!-- HERO / WELCOME -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-emoji">🎓</span>
+            <h1>Bem-vindo à sua Área do Aluno!</h1>
+            <p>Aqui você encontra todos os seus módulos, ferramentas e conteúdos incluídos no seu plano. Comece a estudar agora mesmo!</p>
+            <div class="plan-indicator">
+                📦 Seu plano: <span class="plan-name" id="plan-display">ENEM INTELIGENTE</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section section-white">
+        <div class="container">
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-value">8+</div>
+                    <div class="stat-label">Módulos Ativos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">∞</div>
+                    <div class="stat-label">Questões Disponíveis</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Áreas do ENEM</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">Acesso Online</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PLAN 1: ENEM INTELIGENTE (NÚCLEO) ===== -->
+    <section class="section section-gray" id="nucleo">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag tag-blue">📦 Plano 1 — Incluído</div>
+                <h2 class="section-title">ENEM INTELIGENTE</h2>
+                <p class="section-desc">O núcleo da plataforma. Diagnóstico inteligente, banco de questões, filtros avançados e acompanhamento completo da sua evolução.</p>
+            </div>
+
+            <div class="modules-grid">
+                <!-- Diagnóstico Inteligente -->
+                <div class="module-card">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-blue">🔬</div>
+                        <div class="module-title">Diagnóstico Inteligente</div>
+                    </div>
+                    <p class="module-desc">Identifique seus pontos fortes e fracos com um diagnóstico personalizado. A plataforma analisa seu desempenho e cria um perfil completo das suas habilidades em cada área do conhecimento.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 1 ✓</span>
+                        <a href="#" class="btn btn-primary btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Banco de Questões -->
+                <div class="module-card">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-blue">📚</div>
+                        <div class="module-title">Banco de Questões</div>
+                    </div>
+                    <p class="module-desc">Acesse milhares de questões organizadas por área do conhecimento, matéria, assunto e nível de dificuldade. Estude de forma direcionada e eficiente.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 1 ✓</span>
+                        <a href="#" class="btn btn-primary btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Filtros por Matéria e Assunto -->
+                <div class="module-card">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-blue">🔍</div>
+                        <div class="module-title">Filtros por Matéria e Assunto</div>
+                    </div>
+                    <p class="module-desc">Encontre exatamente o que precisa estudar. Filtre questões por matéria específica, tema, competência e dificuldade para criar sessões de estudo sob medida.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 1 ✓</span>
+                        <a href="#" class="btn btn-primary btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Painel de Desempenho -->
+                <div class="module-card">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-blue">📊</div>
+                        <div class="module-title">Painel de Desempenho</div>
+                    </div>
+                    <p class="module-desc">Visualize suas notas e desempenho detalhado por área do conhecimento. Acompanhe sua evolução com gráficos claros e métricas atualizadas em tempo real.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 1 ✓</span>
+                        <a href="#" class="btn btn-primary btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Sistema de Evolução -->
+                <div class="module-card">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-blue">📈</div>
+                        <div class="module-title">Sistema de Evolução</div>
+                    </div>
+                    <p class="module-desc">Monitore seu progresso ao longo do tempo. Veja como sua nota evolui, quais assuntos você domina e onde precisa investir mais tempo de estudo.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 1 ✓</span>
+                        <a href="#" class="btn btn-primary btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Recomendações de Estudo -->
+                <div class="module-card">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-blue">💡</div>
+                        <div class="module-title">Recomendações de Estudo</div>
+                    </div>
+                    <p class="module-desc">Receba sugestões personalizadas baseadas no seu desempenho. A plataforma identifica lacunas e indica os melhores conteúdos para maximizar sua nota.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 1 ✓</span>
+                        <a href="#" class="btn btn-primary btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Treinos Direcionados -->
+                <div class="module-card">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-blue">🎯</div>
+                        <div class="module-title">Treinos Direcionados</div>
+                    </div>
+                    <p class="module-desc">Sessões de treino focadas nos temas que mais precisam de atenção. Pratique de forma inteligente com questões selecionadas especialmente para o seu nível.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 1 ✓</span>
+                        <a href="#" class="btn btn-primary btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Acompanhamento da Evolução -->
+                <div class="module-card">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-blue">🗓️</div>
+                        <div class="module-title">Acompanhamento da Evolução</div>
+                    </div>
+                    <p class="module-desc">Acompanhe sua evolução ao longo das semanas e meses com relatórios detalhados. Veja seu histórico de estudos e como seu desempenho melhora progressivamente.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 1 ✓</span>
+                        <a href="#" class="btn btn-primary btn-sm">Acessar →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PLAN 2: SIMULADO INTELIGENTE ===== -->
+    <section class="section section-white" id="simulado">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag tag-green">📝 Plano 2 — Simulado Inteligente</div>
+                <h2 class="section-title">SIMULADO INTELIGENTE</h2>
+                <p class="section-desc">Simulados completos no estilo ENEM com cronômetro, análise detalhada por área e recomendações personalizadas pós-prova.</p>
+            </div>
+
+            <div class="modules-grid">
+                <!-- Simulados Estilo ENEM -->
+                <div class="module-card accent-green">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-green">📋</div>
+                        <div class="module-title">Simulados Estilo ENEM</div>
+                    </div>
+                    <p class="module-desc">Provas completas com 180 questões no formato oficial do ENEM. Questões selecionadas estrategicamente para simular a experiência real do exame.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 2 ✓</span>
+                        <a href="#" class="btn btn-success btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Cronômetro -->
+                <div class="module-card accent-green">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-green">⏱️</div>
+                        <div class="module-title">Cronômetro de Prova</div>
+                    </div>
+                    <p class="module-desc">Cronômetro integrado que replica as condições reais do ENEM. Treine sua gestão de tempo e aprenda a distribuir as horas entre as áreas e a redação.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 2 ✓</span>
+                        <a href="#" class="btn btn-success btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Resultado por Área -->
+                <div class="module-card accent-green">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-green">📊</div>
+                        <div class="module-title">Resultado por Área</div>
+                    </div>
+                    <p class="module-desc">Veja sua nota detalhada em cada uma das 4 áreas do conhecimento e na redação. Identifique suas áreas mais fortes e as que precisam de mais atenção.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 2 ✓</span>
+                        <a href="#" class="btn btn-success btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Análise Avançada -->
+                <div class="module-card accent-green">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-green">🧠</div>
+                        <div class="module-title">Análise Avançada</div>
+                    </div>
+                    <p class="module-desc">Análise profunda do seu desempenho: taxa de acerto por competência, tempo médio por questão, padrões de erro e comparação com o desempenho médio.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 2 ✓</span>
+                        <a href="#" class="btn btn-success btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Identificação de Dificuldades -->
+                <div class="module-card accent-green">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-green">🔎</div>
+                        <div class="module-title">Identificação de Dificuldades</div>
+                    </div>
+                    <p class="module-desc">O sistema mapeia automaticamente seus pontos fracos — quais assuntos, competências e tipos de questão te atrapalham. Receba um mapa claro do que estudar.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 2 ✓</span>
+                        <a href="#" class="btn btn-success btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Comparação entre Simulados -->
+                <div class="module-card accent-green">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-green">📉</div>
+                        <div class="module-title">Comparação entre Simulados</div>
+                    </div>
+                    <p class="module-desc">Compare seus resultados entre diferentes simulados e veja sua evolução ao longo do tempo. Acompanhe quantos pontos você ganhou a cada tentativa.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 2 ✓</span>
+                        <a href="#" class="btn btn-success btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Recomendações Pós-Simulado -->
+                <div class="module-card accent-green">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-green">💡</div>
+                        <div class="module-title">Recomendações Pós-Simulado</div>
+                    </div>
+                    <p class="module-desc">Após cada simulado, receba um plano de estudos personalizado. Saiba exatamente o que estudar para melhorar sua nota na próxima prova.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 2 ✓</span>
+                        <a href="#" class="btn btn-success btn-sm">Acessar →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PLAN 3: REDAÇÃO 900+ ===== -->
+    <section class="section section-gray" id="redacao">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag tag-purple">✍️ Plano 3 — Redação 900+</div>
+                <h2 class="section-title">REDAÇÃO 900+</h2>
+                <p class="section-desc">Correção detalhada de redação por competência, identificação de erros, sugestões de melhoria e treinamento focado para alcançar nota 1000.</p>
+            </div>
+
+            <div class="modules-grid">
+                <!-- Correção de Redação -->
+                <div class="module-card accent-purple">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-purple">📝</div>
+                        <div class="module-title">Correção de Redação</div>
+                    </div>
+                    <p class="module-desc">Envie sua redação e receba uma correção completa e detalhada. Cada aspecto do seu texto é analisado seguindo os critérios oficiais do ENEM.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 3 ✓</span>
+                        <a href="#" class="btn btn-purple btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Análise por Competência -->
+                <div class="module-card accent-purple">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-purple">🎯</div>
+                        <div class="module-title">Análise por Competência</div>
+                    </div>
+                    <p class="module-desc">Sua redação é avaliada em cada uma das 5 competências do ENEM. Saiba exatamente quantos pontos ganhou em cada uma e o que falta para a nota máxima.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 3 ✓</span>
+                        <a href="#" class="btn btn-purple btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Identificação de Erros -->
+                <div class="module-card accent-purple">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-purple">🐛</div>
+                        <div class="module-title">Identificação de Erros</div>
+                    </div>
+                    <p class="module-desc">Erros gramaticais, de coerência, coesão e estrutura são identificados e explicados. Entenda exatamente onde errou e como corrigir cada problema.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 3 ✓</span>
+                        <a href="#" class="btn btn-purple btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Sugestões de Melhoria -->
+                <div class="module-card accent-purple">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-purple">✨</div>
+                        <div class="module-title">Sugestões de Melhoria</div>
+                    </div>
+                    <p class="module-desc">Receba sugestões práticas e acionáveis para elevar sua nota. Dicas de vocabulário, estrutura argumentativa, repertório sociocultural e conectivos.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 3 ✓</span>
+                        <a href="#" class="btn btn-purple btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Estrutura -->
+                <div class="module-card accent-purple">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-purple">🏗️</div>
+                        <div class="module-title">Guia de Estrutura</div>
+                    </div>
+                    <p class="module-desc">Aprenda a estrutura ideal da redação do ENEM: introdução, desenvolvimento e conclusão. Modelos, templates e técnicas comprovadas para cada parágrafo.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 3 ✓</span>
+                        <a href="#" class="btn btn-purple btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Treinamento por Competência -->
+                <div class="module-card accent-purple">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-purple">🏋️</div>
+                        <div class="module-title">Treinamento por Competência</div>
+                    </div>
+                    <p class="module-desc">Exercícios focados em cada competência específica. Treine domínio da norma culta, compreensão da proposta, repertório, argumentação e proposta de intervenção.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 3 ✓</span>
+                        <a href="#" class="btn btn-purple btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Exemplos e Exercícios -->
+                <div class="module-card accent-purple">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-purple">📖</div>
+                        <div class="module-title">Exemplos e Exercícios</div>
+                    </div>
+                    <p class="module-desc">Redações nota 1000 comentadas, exercícios práticos de escrita, propostas de temas atuais e materiais complementares para dominar a redação do ENEM.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 3 ✓</span>
+                        <a href="#" class="btn btn-purple btn-sm">Acessar →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PLAN 4: BÔNUS EXCLUSIVO ===== -->
+    <section class="section section-white" id="beneficios">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag tag-rose">⭐ Plano 4 — Exclusivo COMPLETO</div>
+                <h2 class="section-title">ENEM INTELIGENTE COMPLETO</h2>
+                <p class="section-desc">Benefícios exclusivos do plano completo: acesso vitalício e todos os conteúdos futuros incluídos.</p>
+            </div>
+
+            <div class="modules-grid">
+                <!-- Acesso Vitalício -->
+                <div class="module-card accent-rose">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-rose">♾️</div>
+                        <div class="module-title">Acesso Vitalício</div>
+                    </div>
+                    <p class="module-desc">Seu acesso nunca expira. Estude no seu ritmo, sem pressa e sem mensalidades. Todos os módulos e funcionalidades disponíveis para sempre.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 4 ✓</span>
+                        <a href="#" class="btn btn-rose btn-sm">Acessar →</a>
+                    </div>
+                </div>
+
+                <!-- Todos os Conteúdos Futuros -->
+                <div class="module-card accent-rose">
+                    <div class="module-card-header">
+                        <div class="module-icon icon-rose">🚀</div>
+                        <div class="module-title">Todos os Conteúdos Futuros</div>
+                    </div>
+                    <p class="module-desc">Novos módulos, simulados, questões e funcionalidades que forem adicionados à plataforma serão automaticamente liberados para você, sem custo extra.</p>
+                    <div class="module-card-footer">
+                        <span class="module-plan-tag">Plano 4 ✓</span>
+                        <a href="#" class="btn btn-rose btn-sm">Acessar →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== UPSELL: PLANOS ===== -->
+    <section class="upsell-section" id="planos">
+        <h2 class="upsell-title">Você não tem esse módulo? Compre agora!</h2>
+        <p class="upsell-subtitle">Desbloqueie mais funcionalidades e acelere sua preparação para o ENEM.</p>
+
+        <div class="upsell-grid">
+            <!-- Plan 1 -->
+            <div class="upsell-card">
+                <span class="upsell-plan-icon">🎯</span>
+                <div class="upsell-plan-name">ENEM INTELIGENTE</div>
+                <div class="upsell-plan-price">R$ 16,90 <small>/pagamento único</small></div>
+                <div class="upsell-plan-billing">Acesso imediato</div>
+                <ul class="upsell-features">
+                    <li>Diagnóstico inteligente</li>
+                    <li>Banco de questões completo</li>
+                    <li>Filtros por matéria e assunto</li>
+                    <li>Painel de desempenho</li>
+                    <li>Sistema de evolução</li>
+                    <li>Recomendações de estudo</li>
+                    <li>Treinos direcionados</li>
+                    <li>Acompanhamento da evolução</li>
+                </ul>
+                <a href="https://pay.cakto.com.br/jjgaorz_1059575" target="_blank" class="btn btn-outline btn-lg">Quero este plano →</a>
+            </div>
+
+            <!-- Plan 2 -->
+            <div class="upsell-card">
+                <span class="upsell-plan-icon">📝</span>
+                <div class="upsell-plan-name">SIMULADO INTELIGENTE</div>
+                <div class="upsell-plan-price">R$ 22,90 <small>/pagamento único</small></div>
+                <div class="upsell-plan-billing">Tudo do Plano 1 + Simulados</div>
+                <ul class="upsell-features">
+                    <li>Tudo do ENEM INTELIGENTE</li>
+                    <li>Simulados estilo ENEM</li>
+                    <li>Cronômetro integrado</li>
+                    <li>Resultado por área</li>
+                    <li>Análise avançada</li>
+                    <li>Identificação de dificuldades</li>
+                    <li>Comparação entre simulados</li>
+                    <li>Recomendações pós-simulado</li>
+                </ul>
+                <a href="https://pay.cakto.com.br/6266zxo" target="_blank" class="btn btn-success btn-lg">Quero este plano →</a>
+            </div>
+
+            <!-- Plan 3 -->
+            <div class="upsell-card">
+                <span class="upsell-plan-icon">✍️</span>
+                <div class="upsell-plan-name">REDAÇÃO 900+</div>
+                <div class="upsell-plan-price">R$ 32,90 <small>/pagamento único</small></div>
+                <div class="upsell-plan-billing">Tudo do Plano 1 + Redação</div>
+                <ul class="upsell-features">
+                    <li>Tudo do ENEM INTELIGENTE</li>
+                    <li>Correção de redação</li>
+                    <li>Análise por competência</li>
+                    <li>Identificação de erros</li>
+                    <li>Sugestões de melhoria</li>
+                    <li>Guia de estrutura</li>
+                    <li>Treinamento por competência</li>
+                    <li>Exemplos e exercícios</li>
+                </ul>
+                <a href="https://pay.cakto.com.br/firq4nz" target="_blank" class="btn btn-purple btn-lg">Quero este plano →</a>
+            </div>
+
+            <!-- Plan 4 (Featured) -->
+            <div class="upsell-card featured">
+                <span class="upsell-plan-icon">⭐</span>
+                <div class="upsell-plan-name">COMPLETO</div>
+                <div class="upsell-plan-price">R$ 59,90 <small>/pagamento único</small></div>
+                <div class="upsell-plan-billing">TODOS os módulos + Vitalício</div>
+                <ul class="upsell-features">
+                    <li>TODOS os módulos acima</li>
+                    <li>Simulados inteligentes</li>
+                    <li>Redação 900+ completo</li>
+                    <li>Acesso vitalício</li>
+                    <li>Todos os conteúdos futuros</li>
+                    <li>Suporte prioritário</li>
+                    <li>Melhor custo-benefício</li>
+                    <li>Economia de R$ 12,80</li>
+                </ul>
+                <a href="https://pay.cakto.com.br/u2zotwb" target="_blank" class="btn btn-primary btn-lg">Quero este plano →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SUPPORT ===== -->
+    <section class="support-bar" id="suporte">
+        <h3>💬 Precisa de ajuda?</h3>
+        <p>Nossa equipe de suporte está pronta para te ajudar com qualquer dúvida sobre acesso, módulos ou sua conta.</p>
+        <div class="support-contacts">
+            <a href="https://wa.me/5511999999999" target="_blank" class="support-contact">
+                <span>📱</span> WhatsApp
+            </a>
+            <a href="mailto:suporte@eneminteligente.com" class="support-contact">
+                <span>📧</span> E-mail
+            </a>
+            <a href="#" class="support-contact">
+                <span>❓</span> FAQ
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <p>© 2025 ENEM Inteligente. Todos os direitos reservados. Feito com ❤️ para quem quer conquistar o ENEM.</p>
+    </footer>
+
+</body>
+</html>
