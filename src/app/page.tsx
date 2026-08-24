@@ -1,3 +1,4 @@
+import TopSocialBar from "@/components/enem/TopSocialBar";
 import HeroSection from "@/components/enem/HeroSection";
 import ValueProposition from "@/components/enem/ValueProposition";
 import PainSection from "@/components/enem/PainSection";
@@ -16,6 +17,7 @@ import MobileCTA from "@/components/enem/MobileCTA";
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col">
+      <TopSocialBar />
       <HeroSection />
       <ValueProposition />
       <PainSection />

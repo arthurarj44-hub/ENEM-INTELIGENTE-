@@ -59,4 +59,4 @@ server.log
 /tool-results/
 watchdog.sh
 run-dev.sh
-.zscripts/
+.zscripts/top-social-bar-*.png
